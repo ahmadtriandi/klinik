@@ -31,7 +31,7 @@ $youtubeLatestVideo = $result1['items'][0]['id']['videoId'];
 //instagram Api
 
 $clientId = '859735457848515';
-$accessToken = 'EAAbBFtaPxX4BABREjPfcZCu3bSYZBo6RrhGA2mWV3T7vOu44LvLH7erGQLiAWm7t2qKuBuFc9xtj9fKfU7Ndvssfx0NXIZAdulrAyKvcTZAwx7QkJXTT4IKZAxvjpxG9lDoL2XTllf8MCQ01uoxPR73nxq7GN6O82yJZBbNz6H7wZDZD';
+$accessToken = 'EAAbBFtaPxX4BAF63wOEEPY4UUiFZBi2YW72rLrJL7r9g0hCsOIYHxRoVwUj9scvHfvrCN6eNTm7VfpTZBzbcQLfStiAzxYMDfaLZAMrBMzhcVh5UzY2CPLJpfclHnZCGAYv1szGLv5FlGxKZCZCJPUOW3UvamZA5b05b6rjaRKWOgZDZD';
 
 $result = get_CURL('https://graph.facebook.com/v8.0/17841404890124240?fields=username,followers_count,profile_picture_url,biography&access_token=' . $accessToken . '');
 
