@@ -15,13 +15,13 @@ function get_CURL($url)
     return json_decode($result, true); //untuk di jadikan array
 }
 
-$result = get_CURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCkXmLjEr95LVtGuIm3l2dPg&key=AIzaSyAG4BQkWV541xfd-cDi7Y40QFMLJY6bQJ0');
+$result = get_CURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCkXmLjEr95LVtGuIm3l2dPg&key=AIzaSyBM2iXqamn14p-OwZSkeNYCbfAopIIPZio');
 $youtubeProfilePic = $result['items'][0]['snippet']['thumbnails']['medium']['url'];
 $youtubeNamaAccount = $result['items'][0]['snippet']['title'];
 $youtubeSubscriber = $result['items'][0]['statistics']['subscriberCount'];
 
 //latest video
-$urlLatestVideo = 'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCkXmLjEr95LVtGuIm3l2dPg&maxResults=1&key=AIzaSyAG4BQkWV541xfd-cDi7Y40QFMLJY6bQJ0&order=date';
+$urlLatestVideo = 'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCkXmLjEr95LVtGuIm3l2dPg&maxResults=1&key=AIzaSyBM2iXqamn14p-OwZSkeNYCbfAopIIPZio&order=date';
 
 $result1 = get_CURL($urlLatestVideo);
 $youtubeLatestVideo = $result1['items'][0]['id']['videoId'];
@@ -31,9 +31,9 @@ $youtubeLatestVideo = $result1['items'][0]['id']['videoId'];
 //instagram Api
 
 $clientId = '859735457848515';
-$accessToken = 'EAAbBFtaPxX4BAJIlM3M0q4YZCftrtIzP6Ruy8u5skyrPyV7pOTN6ZAknKdmFlLyVvaKdZBvkieqI9ZAopnATwMfi8LQblG2gMwhtq1ZB2FItnEJIOSAvSjPaAb2EqhnJBt3MXaXdkQLmQZBaQMG7LZBGcC49pOGckRW7tlJKqPGCgZDZD';
+$accessToken = 'EAAbBFtaPxX4BABREjPfcZCu3bSYZBo6RrhGA2mWV3T7vOu44LvLH7erGQLiAWm7t2qKuBuFc9xtj9fKfU7Ndvssfx0NXIZAdulrAyKvcTZAwx7QkJXTT4IKZAxvjpxG9lDoL2XTllf8MCQ01uoxPR73nxq7GN6O82yJZBbNz6H7wZDZD';
 
-$result = get_CURL('https://graph.facebook.com/v7.0/17841404890124240?fields=username,followers_count,profile_picture_url,biography&access_token=' . $accessToken . '');
+$result = get_CURL('https://graph.facebook.com/v8.0/17841404890124240?fields=username,followers_count,profile_picture_url,biography&access_token=' . $accessToken . '');
 
 $usernameIG = $result['username'];
 $profilePictureIG = $result['profile_picture_url'];
@@ -41,7 +41,7 @@ $followerIG = $result['followers_count'];
 $biographyIG = $result['biography'];
 
 //media
-$result = get_CURL('https://graph.facebook.com/v7.0/17841404890124240?fields=business_discovery.username(gragestone_official){username,website,name,ig_id,id,profile_picture_url,biography,follows_count,followers_count,media_count,media{caption,like_count,comments_count,media_url,permalink,media_type}}&access_token=' . $accessToken . '');
+$result = get_CURL('https://graph.facebook.com/v8.0/17841404890124240?fields=business_discovery.username(gragestone_official){username,website,name,ig_id,id,profile_picture_url,biography,follows_count,followers_count,media_count,media{caption,like_count,comments_count,media_url,permalink,media_type}}&access_token=' . $accessToken . '');
 
 $photosIG = [];
 foreach ($result['business_discovery']['media']['data'] as $photo) {
@@ -53,7 +53,7 @@ foreach ($result['business_discovery']['media']['data'] as $photo) {
 
     // hashtag
 
-    $result = get_CURL('https://graph.facebook.com/v7.0/17843824174048335/recent_media?user_id=17841404890124240&fields=media_type,media_url&access_token=' . $accessToken . '&limit=20');
+    $result = get_CURL('https://graph.facebook.com/v8.0/17842343542065240/recent_media?user_id=17841404890124240&fields=media_type,media_url&access_token=' . $accessToken . '&limit=40');
 
     $hashtagIG = [];
 
@@ -74,9 +74,9 @@ foreach ($result['business_discovery']['media']['data'] as $photo) {
 <div class="jumbotron" id="home">
     <div class="container">
         <div class="text-center">
-            <img src="img/profile1.png" class="rounded-circle img-thumbnail">
-            <h1 class="display-4">Sandhika Galih</h1>
-            <h3 class="lead">Lecturer | Programmer | Youtuber</h3>
+            <img src="img/profile1.jpg" class="rounded-circle img-thumbnail">
+            <h1 class="display-4">Ahmad Triandi</h1>
+            <h3 class="lead">Technical Support | Programmer | Gamer</h3>
         </div>
     </div>
 </div>
@@ -146,15 +146,23 @@ foreach ($result['business_discovery']['media']['data'] as $photo) {
                     </div>
                 </div>
 
-                <div class="row mt-3 pb-3">
-                    <div class="col">
+
+                <div class="tz-gallery">
+
+                    <div class="row mt-3 pb-3 justify-content-center">
                         <?php foreach ($photosIG as $photo) : ?>
-                            <div class="ig-thumbnail mr-1">
-                                <img src="<?= $photo; ?>" alt="">
-                            </div>
+                            <a class="lightbox" href="<?= $photo; ?>">
+                                <div class="col">
+                                    <div class="ig-thumbnail mr-1">
+                                        <img src="<?= $photo; ?>" alt="">
+                                    </div>
+                                </div>
+                            </a>
                         <?php endforeach; ?>
+
                     </div>
                 </div>
+
 
 
             </div>
@@ -163,12 +171,12 @@ foreach ($result['business_discovery']['media']['data'] as $photo) {
 </section>
 
 
-<!-- hashtag #kmupdates -->
+<!-- hashtag #cristianoronaldo -->
 <section class="hashtag" id="hashtag">
     <div class="container">
         <div class="row pt-4 mb-4">
             <div class="col text-center">
-                <h2>Hashtag<span class="font-italic text-warning"> #kmupdates</span></h2>
+                <h2>Hashtag<span class="font-italic text-warning"> #cristianoronaldo</span></h2>
             </div>
         </div>
 
